@@ -15,8 +15,6 @@ emotion_labels = {
 focused_emotion_labels = ['happy', 'sad']
 
 def audio_features(file_title, mfcc, chroma, mel):
-    #samplerate2 = sf.read("/Users/Asus/Workspace/VoiceEmotionPyBot/tmp/Sujeto1/01-F-01.wav")
-    #print(samplerate2) 
     with sf.SoundFile(file_title) as audio_recording:
         audio = audio_recording.read(dtype="float32")
         sample_rate = audio_recording.samplerate
