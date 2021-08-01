@@ -2,6 +2,7 @@ import librosa as lb
 import soundfile as sf
 import numpy as np
 import os, glob, pickle
+import os.path
 
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
@@ -36,7 +37,8 @@ def audio_features(file_title, mfcc, chroma, mel):
 def loading_audio_data():
     x = []
     y = []
-    for file in glob.glob("/Users/Asus/Workspace/VoiceEmotionPyBot/tmp/Sujeto1/*.wav"):
+
+    for file in glob.glob('tmp//Sujeto-prueba//*.wav', recursive=True):
         file_path=os.path.basename(file)
         emotion = emotion_labels[file_path.split("-")[0]]
         if emotion not in focused_emotion_labels:
@@ -45,6 +47,7 @@ def loading_audio_data():
         
         x.append(feature)
         y.append(emotion)
+        
     final_dataset = train_test_split(np.array(x), y, test_size=0.1, random_state=9)
     return final_dataset
 
